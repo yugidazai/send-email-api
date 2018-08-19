@@ -16,6 +16,9 @@ If one of the service providers goes down, the application can failover to a dif
 
 ## Development
 ### Execute the API
+1. Add API keys in an environment file, e.g `email.env`
+2. Run `source email.env` before starting the API service.
+3. Start API
 ```
 npm install
 npm start
