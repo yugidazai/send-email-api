@@ -1,0 +1,50 @@
+{
+  "name": "send-email-api",
+  "version": "1.0.0",
+  "description": "NodeJS API for sending emails",
+  "scripts": {
+    "test": "jest --forceExit",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Minh Duc Nguyen <yugidazai@gmail.com>",
+  "license": "ISC",
+  "main": "server.js",
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ],
+    "testEnvironment": "node",
+    "notify": false,
+    "verbose": true,
+    "testResultsProcessor": "./node_modules/jest-junit-reporter"
+  },
+  "devDependencies": {
+    "babel-jest": "^21.0.2",
+    "jest": "^21.0.1",
+    "jest-cli": "^21.1.0",
+    "jest-junit-reporter": "^1.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.17.2",
+    "config": "^1.26.2",
+    "cors": "^2.8.4",
+    "email-validator": "^2.0.4",
+    "express": "^4.15.4",
+    "qs": "^6.5.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yugidazai/send-email-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yugidazai/send-email-api/issues"
+  }
+}
