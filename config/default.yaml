@@ -17,10 +17,13 @@ email:
   providers:
     sendgrid:
       url: https://api.sendgrid.com/v3/mail/send
-      apiKey: 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
+      apiKey: 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
+      # apiKey: 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
     mailgun:
-      url: https://api.mailgun.net/v3/sandbox4ef09885046a4008a4dd411c244d0644.mailgun.org/messages
-      apiKey: 'bf5e4e4b1730aa763f8412056fbedec0-6b60e603-160743b9'
+      url: https://api.mailgun.net/v3/sandboxf00ba939379744e19590223e569da451.mailgun.org/messages
+      apiKey: '49a6a36d98529f634b3b5c17794a6541-6b60e603-7ab32e21'
+      # url: https://api.mailgun.net/v3/sandbox4ef09885046a4008a4dd411c244d0644.mailgun.org/messages
+      # apiKey: 'bf5e4e4b1730aa763f8412056fbedec0-6b60e603-160743b9'
 
   messages:
     fail: Sorry, the service is unavailable at the moment! Please try again later.

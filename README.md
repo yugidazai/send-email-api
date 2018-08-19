@@ -5,7 +5,7 @@ If one of the service providers goes down, the application can failover to a dif
 ## Email Service Providers
 - [MailGun](https://documentation.mailgun.com/en/latest/api-sending.html)
 - [SendGrid](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
-(Can add more service providers under `services/email/service-providers`)
+### (Can add more service providers under `services/email/service-providers`)
 
 ## Structure
 - config (Files for configuration key/value pairs of each NODE_ENV)
@@ -20,11 +20,14 @@ If one of the service providers goes down, the application can failover to a dif
 npm install
 npm start
 ```
-### Test
-### Execute
+### Execute Test
 ```
 npm test
 ```
+### Emails' whitelist
+There are a list of emails that can be only receiver in development mode.
+(Refer `developerMode` key in config file)
+This is to avoid that the email service accidentally sends emails to wrong people.
 
 ## Improvements/Production
 - Use ASW KMS for handling encryption/decryption for API keys.

@@ -27,8 +27,7 @@ class RouterHelper {
       try {
         method(params)
           .then(result => res.send(result))
-          .catch(err =>
-            res.status(500).send(err.message || err));
+          .catch(err => res.status(500).send(err.message || err));
       } catch (error) {
         res.status(500).send(error.message);
       }
