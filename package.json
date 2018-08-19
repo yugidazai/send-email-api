@@ -4,7 +4,8 @@
   "description": "NodeJS API for sending emails",
   "scripts": {
     "test": "jest --forceExit",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start-dev": "source email.env && node server.js"
   },
   "keywords": [],
   "author": "Minh Duc Nguyen <yugidazai@gmail.com>",

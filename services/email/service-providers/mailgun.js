@@ -11,7 +11,7 @@ class MailGun extends EmailServiceProvider {
     const apiKey = process.env.MAILGUN_API_KEY || mailgun.apiKey;
     this.requestOptions = {
       ...(this.requestOptions),
-      url: mailgun.url,
+      url: mailgun.url.replace(`{domain}`, process.env.MAINGUN_DOMAIN || mailgun.domain),
       headers: {},
       auth: {
         username: 'api',

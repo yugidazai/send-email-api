@@ -19,7 +19,8 @@ email:
       url: https://api.sendgrid.com/v3/mail/send
       apiKey: <CHANGE_ME>
     mailgun:
-      url: https://api.mailgun.net/v3/sandboxf00ba939379744e19590223e569da451.mailgun.org/messages
+      url: https://api.mailgun.net/v3/{domain}/messages
+      domain: sandboxccebe47c91b840f0b486c2de88579fd3.mailgun.org
       apiKey: <CHANGE_ME>
 
   messages:

@@ -17,4 +17,4 @@ node_modules/
 # Test results
 test-report.xml
 
-email.env
+*.env
