@@ -17,14 +17,15 @@ If one of the service providers goes down, the application can failover to a dif
 ## Development
 ### Execute the API
 1. Add API keys in an environment file, e.g `email.env`
-2. Run `source email.env` before starting the API service.
-3. Start API
-by command line
-```
-npm install
-npm start
-```
-or VSCode with launch name `Debug API`
+2. Start API
+  - Command line
+    ```
+    npm install
+    source email.env
+    npm start
+    ```
+or
+  - VSCode: run `source email.env`in VSCode terminal and start API with launch name `Debug API`
 ### Execute Test
 ```
 npm test

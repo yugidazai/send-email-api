@@ -10,20 +10,12 @@ const getRoutes = {
 };
 
 const postRoutes = {
-  "/send-email": RouterHelper.execute(EmailHandler.sendEmail)
+  "/send-email": RouterHelper.execute(EmailHandler.handleSendEmail)
 };
 
-class ApiRouter {
-  constructor() {
-    this.routeDefinitions = {
-      GET: getRoutes,
-      POST: postRoutes
-    };
-  }
-
-  get() {
-    return RouterHelper.createRouter(this.routeDefinitions);
-  }
+const routeDefinitions = {
+  GET: getRoutes,
+  POST: postRoutes
 };
 
-module.exports = new ApiRouter();
+module.exports = RouterHelper.createRouter(routeDefinitions);
