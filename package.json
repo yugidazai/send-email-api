@@ -4,7 +4,7 @@
   "description": "NodeJS API for sending emails",
   "scripts": {
     "test": "jest --forceExit",
-    "start": "node server.js",
+    "start": "export NODE_ENV=local && node server.js",
     "start-dev": "source email.env && node server.js"
   },
   "keywords": [],

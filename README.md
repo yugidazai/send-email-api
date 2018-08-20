@@ -3,7 +3,7 @@ NodeJS API allows sending emails with an abstraction of different email service 
 If one of the service providers goes down, the application can failover to a different service provider without affecting users' experience.
 
 ## Email Service Providers
-- [MailGun](https://documentation.mailgun.com/en/latest/api-sending.html)
+- [MailGun](https://documentation.mailgun.com/en/latest/api-sending.html) To receive email from MailGun (sandbox env), your email needs to be in the authorized list of sandbox MailGun account. Contact developer about this.
 - [SendGrid](https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html)
 ### (Can add more service providers under `services/email/service-providers`)
 
@@ -19,18 +19,31 @@ If one of the service providers goes down, the application can failover to a dif
 1. Add API keys in an environment file, e.g `email.env`
 2. Run `source email.env` before starting the API service.
 3. Start API
+by command line
 ```
 npm install
 npm start
 ```
+or VSCode with launch name `Debug API`
 ### Execute Test
 ```
 npm test
 ```
 ### Emails' whitelist
 There are a list of emails that can be only receiver in development mode.
-(Refer `developerMode` key in config file)
+(Refer `developerMode` & `developerEmails` keys in config file)
 This is to avoid that the email service accidentally sends emails to wrong people.
+
+## API Usage
+Endpoint: `/send-email`
+Params: (all are mandatory except `senderName`, `bcc` and `cc`)
+- `senderEmail`
+- `senderName`
+- `receiverEmail`
+- `bcc`
+- `cc`
+- `subject`
+- `content`
 
 ## Improvements/Production
 - Use ASW KMS for handling encryption/decryption for API keys.

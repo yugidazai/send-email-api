@@ -1,10 +1,12 @@
 "use strict";
 
+const config        = require("config");
 const RouterHelper  = require("./helpers/router");
 const EmailHandler  = require("./controllers/email-handler");
 
 const getRoutes = {
-  "/": (req, res) => res.send(process.env.DEFAULT_TEXT || `Send Email API Running`)
+  "/": (req, res) => res.send(
+    `Send Email API Running. Mode: ${config.developerMode? 'DEVELOPMENT' : 'PRODUCTION'}`)
 };
 
 const postRoutes = {
