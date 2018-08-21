@@ -9,55 +9,57 @@ const emailsToArray = emails => {
   return Array.isArray(emails) ? emails : emails.split(`,`);
 };
 
-const validateSenderEmail = (errors, senderEmail) => {
+const validateSenderEmail = (senderEmail) => {
   if (!EmailValidator.validate(senderEmail)) {
-    errors.push(`Invalid Sender Email Address!`);
+    return `Invalid Sender Email Address!`;
   }
 };
 
-const validateRecipientsEmail = (errors, { receiverEmail, bcc, cc }) => {
+const validateRecipientsEmail = ({ receiverEmail, bcc, cc }) => {
   let emailsToValidate = [];
   if (!receiverEmail || receiverEmail.length == 0) {
-    errors.push(`Invalid Recipient Email Address!`);
-  } else {
-    emailsToValidate.push(receiverEmail);
-    if (bcc) emailsToValidate.push(bcc);
-    if (cc) emailsToValidate.push(cc);
-    for (const emailsInput of emailsToValidate) {
-      let hasInvalidEmail = false;
-      for (const email of emailsInput) {
-        if (!EmailValidator.validate(email)) {
-          errors.push(`Invalid Recipient Email Address!`);
-          hasInvalidEmail = true;
-          break;
-        }
+    return `Invalid Recipient Email Address!`;
+  }
+  emailsToValidate.push(receiverEmail);
+  if (bcc) emailsToValidate.push(bcc);
+  if (cc) emailsToValidate.push(cc);
+  for (const emailsInput of emailsToValidate) {
+    for (const email of emailsInput) {
+      if (!EmailValidator.validate(email)) {
+        return `Invalid Recipient Email Address!`;
       }
-      if (hasInvalidEmail) break;
     }
   }
 };
 
-const validateInputText = (errors, { subject, content }) => {
+const validateInputText = ({ subject, content }) => {
   for (const textInput of [subject, content]) {
     if (!textInput || !textInput.trim()) {
-      errors.push(`Invalid subject/content input!`);
-      break;
+      return `Invalid subject/content input!`;
     }
   }
 };
 
-const checkDuplicatedBccCc = (errors, { bcc, cc }) => {
+const checkDuplicatedBccCc = ({ bcc, cc }) => {
   if (bcc.some(email => cc.indexOf(email) > -1)) {
-    errors.push(`Duplicated email address found in both BCC and CC!`);
+    return `Duplicated email address found in both BCC and CC!`;
   }
 };
 
 const validateInput = ({senderEmail, receiverEmail, subject, content, bcc, cc}) => {
   let errors = [];
-  validateSenderEmail(errors, senderEmail);
-  validateRecipientsEmail(errors, { receiverEmail, bcc, cc });
-  validateInputText(errors, { subject, content });
-  checkDuplicatedBccCc(errors, { bcc, cc });
+  const senderEmailError = validateSenderEmail(senderEmail);
+  if (senderEmailError) errors.push(senderEmailError);
+
+  const recipientsEmailError = validateRecipientsEmail({ receiverEmail, bcc, cc });
+  if (recipientsEmailError) errors.push(recipientsEmailError);
+
+  const inputTextError = validateInputText({ subject, content });
+  if (inputTextError) errors.push(inputTextError);
+
+  const duplicatedBccCcError = checkDuplicatedBccCc({ bcc, cc });
+  if (duplicatedBccCcError) errors.push(duplicatedBccCcError);
+
   return errors;
 };
 
