@@ -9,12 +9,13 @@ const emailsToArray = emails => {
   return Array.isArray(emails) ? emails : emails.split(`,`);
 };
 
-const validateInput = ({senderEmail, receiverEmail, subject, content, bcc, cc}) => {
-  let errors = [];
+const validateSenderEmail = (errors, senderEmail) => {
   if (!EmailValidator.validate(senderEmail)) {
     errors.push(`Invalid Sender Email Address!`);
   }
+};
 
+const validateRecipientsEmail = (errors, { receiverEmail, bcc, cc }) => {
   let emailsToValidate = [];
   if (!receiverEmail || receiverEmail.length == 0) {
     errors.push(`Invalid Recipient Email Address!`);
@@ -34,13 +35,29 @@ const validateInput = ({senderEmail, receiverEmail, subject, content, bcc, cc}) 
       if (hasInvalidEmail) break;
     }
   }
+};
 
+const validateInputText = (errors, { subject, content }) => {
   for (const textInput of [subject, content]) {
     if (!textInput || !textInput.trim()) {
       errors.push(`Invalid subject/content input!`);
       break;
     }
   }
+};
+
+const checkDuplicatedBccCc = (errors, { bcc, cc }) => {
+  if (bcc.some(email => cc.indexOf(email) > -1)) {
+    errors.push(`Duplicated email address found in both BCC and CC!`);
+  }
+};
+
+const validateInput = ({senderEmail, receiverEmail, subject, content, bcc, cc}) => {
+  let errors = [];
+  validateSenderEmail(errors, senderEmail);
+  validateRecipientsEmail(errors, { receiverEmail, bcc, cc });
+  validateInputText(errors, { subject, content });
+  checkDuplicatedBccCc(errors, { bcc, cc });
   return errors;
 };
 

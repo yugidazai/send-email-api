@@ -9,8 +9,6 @@ const senderName    = `Test Email`;
 const receiverEmail = [`yugidazai@gmail.com`];
 const subject       = `This is a test email`;
 const content       = `Hello World`;
-const bcc           = [`yugidazai.test@gmail.com`];
-const cc            = [`yugidazai.test@gmail.com`];
 
 describe(`sendEmail`, () => {
 

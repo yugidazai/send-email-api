@@ -153,6 +153,21 @@ describe(`handleSendEmail`, () => {
         });
       }
     );
+
+    test(
+      `duplicated emails in "bcc" and "cc"`,
+      done => {
+        EmailHandler.handleSendEmail({
+          senderEmail, receiverEmail, subject, content, bcc, cc
+        }).catch(err => {
+          expect(err).toBeDefined();
+          expect(err.error).toBeDefined();
+          expect(err.error).toHaveLength(1);
+          expect(err.error[0]).toBe(`Duplicated email address found in both BCC and CC!`);
+          done();
+        });
+      }
+    );
   });
 
   describe(`send email with invalid params`, () => {
