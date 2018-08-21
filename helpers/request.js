@@ -1,9 +1,11 @@
 "use strict";
 
-const axios   = require("axios");
-const qs      = require("qs");
+const qs = require("qs");
 
 const makeRequest = (requestOptions, params) => {
+  // Temporarily move here for testing purpose, can be improved later.
+  const axios = require("axios");
+
   requestOptions = {
 		paramsSerializer: params => qs.stringify(params),
     ...requestOptions,

@@ -89,6 +89,8 @@ describe(`sendEmail`, () => {
 
   describe(`checkServicesError`, () => {
     describe(`Fail to send email due to development configuration`, () => {
+      beforeEach(() => jest.resetModules());
+
       test(
         `Recipients are not registered in development mode`,
         done => {
@@ -106,7 +108,6 @@ describe(`sendEmail`, () => {
               expect(response.sendError).toBe(
                 `Developer mode - emails blocked: ${receiverEmail}. Please contact API owner!`
               );
-              jest.resetModules();
               done();
             });
         }
@@ -122,7 +123,6 @@ describe(`sendEmail`, () => {
             .catch(response => {
               expect(response).toBeDefined();
               expect(response.sendError).toBe(`Email service not Available`);
-              jest.resetModules();
               done();
             });
         }
