@@ -21,15 +21,7 @@
       "name": "Test API",
       "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
       "runtimeVersion": "8.4.0",
-      "stopOnEntry": false,
-      "args": ["--runInBand"],
-      "cwd": "${workspaceRoot}",
-      "preLaunchTask": null,
-      "runtimeExecutable": null,
-      "runtimeArgs": ["--nolazy"],
-      "console": "integratedTerminal",
-      "sourceMaps": false,
-      "outFiles": ["../**/*.js"]
+      "console": "integratedTerminal"
     }
   ]
 }

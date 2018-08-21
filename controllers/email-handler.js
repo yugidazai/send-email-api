@@ -1,6 +1,6 @@
 "use strict";
 
-const { email }       = require("config");
+const emailConfig     = require("config").email;
 const EmailValidator  = require("email-validator");
 const EmailService    = require("../services/email/email-service");
 
@@ -59,14 +59,14 @@ const handleSendEmail = params => {
       const allReceivers = params.receiverEmail.concat(params.cc).concat(params.bcc);
       return Promise.resolve({
         success: true,
-        message: email.messages.success.replace(`{receiver}`, allReceivers)
+        message: emailConfig.messages.success.replace(`{receiver}`, allReceivers)
       });
     })
     .catch(err => {
       console.error(`Email not sent!`, err);
       const failResponse = {
         success: false,
-        message: email.messages.fail
+        message: emailConfig.messages.fail
       };
       return Promise.resolve(
         err.sendError? { error: err.sendError } : failResponse

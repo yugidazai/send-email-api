@@ -8,30 +8,41 @@ If one of the service providers goes down, the application can failover to a dif
 ### (Can add more service providers under `services/email/service-providers`)
 
 ## Structure
-- config (Files for configuration key/value pairs of each NODE_ENV)
-- controllers (Business Logic, e.g validate input, call service to send email and format output with abstraction of different email service providers)
-- helpers (Files for common/reusable logic)
-- services (Folder for all services)
-- test (test purpose)
+- `config` (Files for configuration key/value pairs of each NODE_ENV)
+- `controllers` (Business Logic, e.g validate input, call service to send email and format output with abstraction of different email service providers)
+- `helpers` (Files for common/reusable logic)
+- `services` (Folder for all services)
+- `test` (unit tests using `jest`)
 
 ## Development
+### Install dependencies
+```
+npm install
+```
 ### Execute the API
 1. Add API keys in an environment file, e.g `email.env`
 2. Start API
   - Command line
     ```
-    npm install
     source email.env
     npm start
     ```
+    or
+    ```
+    npm run start-dev
+    ```
 or
-  - VSCode: run `source email.env`in VSCode terminal and start API with launch name `Debug API`
+  - VSCode:
+    + run `source email.env`in VSCode terminal
+    + start API with launch name `Debug API`
+
 ### Execute Test
 ```
 npm test
 ```
 ### Emails' whitelist
 There are a list of emails that can be only receiver in development mode.
+
 (Refer `developerMode` & `developerEmails` keys in config file)
 This is to avoid that the email service accidentally sends emails to wrong people.
 

@@ -1,8 +1,6 @@
 "use strict";
 
 const axios   = require("axios");
-const config  = require("config");
-const http    = require("http");
 const qs      = require("qs");
 
 const makeRequest = (requestOptions, params) => {

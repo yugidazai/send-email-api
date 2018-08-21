@@ -2,7 +2,9 @@
 const MailGun   = require("./mailgun");
 const SendGrid  = require("./sendgrid");
 
-module.exports = [
+const emailServiceProviders = [
     new MailGun(),
     new SendGrid()
 ];
+
+module.exports = emailServiceProviders;

@@ -1,17 +1,17 @@
 "use strict";
 
-const { email }     = require("config");
-const emailServices = require("./service-providers");
+const emailServices = require("./service-providers");;
 
 const checkServicesError = ({receiverEmail, bcc = [], cc = []}) => {
-  if (!email.enabled || !emailServices || emailServices.length == 0) {
+  const emailConfig = require("config").email;
+  if (!emailConfig.enabled || !emailServices || emailServices.length == 0) {
     return `Email service not Available`;
   }
 
-  if (email.developerMode) {
+  if (emailConfig.developerMode) {
     for (const emails of [ receiverEmail, bcc, cc ]) {
       const blockedEmails = emails.filter(
-        e => email.developerEmails.indexOf(e) < 0
+        e => emailConfig.developerEmails.indexOf(e) < 0
       );
       if (blockedEmails.length > 0) {
         return `Developer mode - emails blocked: ${blockedEmails}. Please contact API owner!`;
@@ -37,7 +37,6 @@ const sendEmail = (params) => {
     sendEmailPromise = sendEmailPromise
       .then(() => `Sent by provider: ${serviceProvider.constructor.name}`)
       .catch(err => {
-        console.error(err);
         if (err.missingParam) {
           return Promise.reject(err.missingParam);
         }

@@ -3,7 +3,12 @@ const { sendgrid }          = require("config").email.providers;
 const EmailServiceProvider  = require("../email-service-provider");
 
 const formatEmails = emails =>
-  emails.map(email => ({ email: email }))
+  emails
+    ? Array.isArray(emails)
+        ? emails.map(email => ({ email: email }))
+        : emails.split(`,`)
+    : []
+
 
 class SendGrid extends EmailServiceProvider {
   constructor(options) {
